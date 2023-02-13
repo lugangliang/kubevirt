@@ -840,6 +840,11 @@ func (t *templateService) RenderHotplugAttachmentPodTemplate(volumes []*v1.Volum
 			},
 		},
 		Spec: k8sv1.PodSpec{
+			Tolerations: []k8sv1.Toleration{
+				{
+					Operator: k8sv1.TolerationOpExists,
+				},
+			},
 			Containers: []k8sv1.Container{
 				{
 					Name:    hotplugDisk,
@@ -1028,6 +1033,11 @@ func (t *templateService) RenderHotplugAttachmentTriggerPodTemplate(volume *v1.V
 				emptyDirVolume(hotplugDisks),
 			},
 			TerminationGracePeriodSeconds: &zero,
+			Tolerations: []k8sv1.Toleration{
+				{
+					Operator: k8sv1.TolerationOpExists,
+				},
+			},
 		},
 	}
 

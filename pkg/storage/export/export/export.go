@@ -630,6 +630,7 @@ func (ctrl *VMExportController) createExporterPodManifest(vmExport *exportv1.Vir
 		RunAsNonRoot: pointer.Bool(true),
 		RunAsGroup:   pointer.Int64Ptr(kvm),
 		FSGroup:      pointer.Int64Ptr(kvm),
+		RunAsUser:    pointer.Int64(kvm),
 	}
 	for i, pvc := range pvcs {
 		var mountPoint string
